@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ee">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AJAX</title>
+    </head>
+    
+    <body>
+        <button type="button" onclick="loadDoc()">Request Non-Bacon</button>
+        <p id="demo"></p>
+
+        <script defer>
+            function loadDoc() {
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function() {
+                    const data = this.responseText;
+                    const response = JSON.parse(data); //making it look nicer and stuff and blehh
+                    const facts = response.data.map(item=>`<li>${item.fact}</li>`); //koma on ikka lõik `<p>${item.fact}</p>` `<br>${item.fact}`
+                    //komade eemaldus
+                    let dataHtml = "<ol>"
+                    for (const fact of facts) {
+                        dataHtml += fact;
+                    }
+                    dataHtml += "</ol";
+                    document.getElementById("demo").innerHTML = dataHtml;  
+                };
+                //xhttp.open("GET", "https://baconipsum.com/api/?type=meat-and-filler");
+                xhttp.open("GET", "https://catfact.ninja/facts");
+                xhttp.send();
+            }
+        </script>
+    </body>
+</html>
