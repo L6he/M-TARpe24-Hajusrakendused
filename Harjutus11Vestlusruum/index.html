@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vestulusruum</title>
+    <title>Vestlusruum</title>
 </head>
 <body>
     <form name="publish">
@@ -16,17 +16,25 @@
         let url = `${protocol}//${location.host}/ws`;
 
         let socket = new WebSocket(url);
+        let myName = prompt('Sisesta oma nimi vestluses:', 'Külaline') || 'Anonüümne';
+        let myMessage = "";
         //Vormilt sõnumi saatmine
         document.forms.publish.onsubmit = function() {
-            socket.send(this.message.value);
+            myMessage = { name: myName, time: new Date().toUTCString(), message: myMessage};
+            socket.send(JSON.stringify(myMessage));
+            this.message.value = "";
             return false;
         }
 
         //Saabunud sõnumite töötlemine
         socket.onmessage = function(event) {
             let messageElement = document.createElement("div");
-            messageElement.textContent = event.data;
-            console.log("Event", event);
+            receivedMessage = JSON.parse(event.data);
+            if (receivedMessage.name === myMessage.name && receivedMessage.time === myMessage.time) {
+                messageElement.style.backgroundColor = "lightgray";
+                messageElement.style.textAlign = "right";
+            }
+            messageElement.textContent = `${receivedMessage.name}@${receivedMessage.time}: ${receivedMessage.message}`;
             document.getElementById("messages").append(messageElement);
         }
 

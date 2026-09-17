@@ -22,10 +22,10 @@ const clients = new Set();
 function onSocketConnect(ws) {
     clients.add(ws);
     ws.on('message', function(message) {
-        log("Message", message);
-        message = message.toString().slice(0, 50);
+        const packet = JSON.parse(message.toString());
+        packet = {...packet, message: packet.message.slice(0, 50)};
         for (const client of clients) {
-            client.send(message);
+            client.send(JSON.stringify(packet));
         }
     });
     ws.on('close', function() {
@@ -36,7 +36,7 @@ function onSocketConnect(ws) {
 
 let log
 
-if (!module["parent"]) { // TODO require.main ?
+if (require.main) { // TODO !module["parent"] ?
     log = console.log;
     http.createServer(accept).listen(8080);
 } else {
