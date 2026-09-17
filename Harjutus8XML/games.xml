@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gameslist>
+    <game>
+        <title lang="en">Hearthstone</title>
+        <price>Free</price>
+        <platforms>
+            <platform>PC</platform>
+            <platform>IOS</platform>
+        </platforms>
+    </game>
+    <game>
+        <title lang="en">Risk of Rain 2</title>
+        <price>20.00</price>
+        <platforms>
+            <platform>PC</platform>
+            <platform>Xbox</platform>
+        </platforms>
+    </game>
+    <game>
+        <title lang="en">Doom II</title>
+        <price>10.00</price>
+        <platforms>
+            <platform>PC</platform>
+        </platforms>
+    </game>
+</gameslist>
