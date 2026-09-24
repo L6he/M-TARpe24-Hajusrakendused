@@ -4,25 +4,30 @@
         <eesnimi>Juhan</eesnimi>
         <perenimi>Juurikas</perenimi>
         <synd>1963</synd>
+		<sugu>Mees</sugu>
     </inimene>
     <inimene>
         <eesnimi>Juhan</eesnimi>
         <perenimi>Kaalikas</perenimi>
         <synd>1961</synd>
+		<sugu>Mees</sugu>
     </inimene>
     <inimene>
         <eesnimi>Kalle</eesnimi>
         <perenimi>Kaalikas</perenimi>
         <synd>1975</synd>
+		<sugu>Mees</sugu>
     </inimene>
     <inimene>
         <eesnimi>Mari</eesnimi>
         <perenimi>Maasikas</perenimi>
         <synd>1981</synd>
+		<sugu>Naine</sugu>
     </inimene>
     <inimene>
         <eesnimi>Vanja</eesnimi>
         <perenimi>Vajnšenker</perenimi>
         <synd>2008</synd>
+		<sugu>Mittebinaarne</sugu>
     </inimene>
 </inimesed>
