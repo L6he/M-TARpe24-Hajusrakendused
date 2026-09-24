@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<arvutikomponendid>
+    <komponent>
+        <nimetus>Emaplaat</nimetus>
+        <tootja>Gigabyte</tootja>
+        <mudel>B650 EAGLE AX AM5 DDR5</mudel>
+        <hind>134€</hind>
+    </komponent>
+        
+    <komponent>
+        <nimetus>Graafikakiirendi</nimetus>
+        <tootja>NVIDIA</tootja>
+        <mudel>GeForce® GTX 1050 Ti Gaming 4GB</mudel>
+        <hind>200€</hind>
+    </komponent>
+        
+    <komponent>
+        <nimetus>Ketas</nimetus>
+        <tootja>Kingston</tootja>
+        <mudel>1000G NV3 M.2 2280 PCIe 4.0</mudel>
+        <hind>2000€</hind>
+    </komponent>
+
+    <komponent>
+        <nimetus>Protsessor</nimetus>
+        <tootja>Intel</tootja>
+        <mudel>i5-7400</mudel>
+        <hind>100€</hind>
+    </komponent>
+
+    <komponent>
+        <nimetus>Vahemälu</nimetus>
+        <tootja>G.Skill</tootja>
+        <mudel>Aegis 16GB DDR4</mudel>
+        <hind>2000€</hind>
+    </komponent>
+
+    <komponent>
+        <nimetus>Toiteplokk</nimetus>
+        <tootja>Silverstone</tootja>
+        <mudel>SST-ST50F-ES230 v2.0 Strider Essential Series - 500 Watt</mudel>
+        <hind>46€</hind>
+    </komponent>
+
+    <komponent>
+        <nimetus>Korpus</nimetus>
+        <tootja>DeepCool</tootja>
+        <mudel>CG530 4F</mudel>
+        <hind>50€</hind>
+    </komponent>
+
+    <komponent>
+        <nimetus>Jahuti</nimetus>
+        <tootja>Be Quiet!</tootja>
+        <mudel>Pure Rock Slim 2, 92mm ventilaator</mudel>
+        <hind>25€</hind>
+    </komponent>
+</arvutikomponendid>
