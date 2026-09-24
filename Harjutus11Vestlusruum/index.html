@@ -20,7 +20,7 @@
         let myMessage = "";
         //Vormilt sõnumi saatmine
         document.forms.publish.onsubmit = function() {
-            myMessage = { name: myName, time: new Date().toUTCString(), message: myMessage};
+            myMessage = { name: myName, time: new Date().toUTCString(), message: this.message.value}
             socket.send(JSON.stringify(myMessage));
             this.message.value = "";
             return false;
@@ -31,6 +31,7 @@
             let messageElement = document.createElement("div");
             receivedMessage = JSON.parse(event.data);
             if (receivedMessage.name === myMessage.name && receivedMessage.time === myMessage.time) {
+                messageElement.className = "myMessage";
                 messageElement.style.backgroundColor = "lightgray";
                 messageElement.style.textAlign = "right";
             }

@@ -7,7 +7,7 @@ const wss = new ws.Server({noServer: true});
 function accept(req, res) {
     if (req.url === '/ws' && req.headers.upgrade &&
         req.headers.upgrade.toLowerCase() === 'websocket' &&
-        req.headers.connection.match(/\bupgrade\b/i))
+        req.headers.connection.match(/\bupgrade\b/i)) //bup!
     {
         wss.handleUpgrade(req, req.socket, Buffer.alloc(0), onSocketConnect);
     } else if (req.url === '/')  {
@@ -22,7 +22,7 @@ const clients = new Set();
 function onSocketConnect(ws) {
     clients.add(ws);
     ws.on('message', function(message) {
-        const packet = JSON.parse(message.toString());
+        let packet = JSON.parse(message.toString());
         packet = {...packet, message: packet.message.slice(0, 50)};
         for (const client of clients) {
             client.send(JSON.stringify(packet));
