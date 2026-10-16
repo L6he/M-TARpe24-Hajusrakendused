@@ -10,35 +10,49 @@
         <button type="button" id="reqBtn" onclick="loadDoc()">Request Pokémon</button>
         <p id="demo"></p>
         
-        <footer style="position: fixed; left: 0; bottom: 0; background-color: black; color: white; text-align: center; width: 100%;">
-            <a href="https://markomaripuu23.thkit.ee/" target="_blank" style="font-size: 150%; color: white; text-decoration: underline; background-color: black;">Index</a>
-        </footer>
+        
         <script defer>
             const defaultUrl = "https://pokeapi.co/api/v2/pokemon/"; // Allikas: https://pokeapi.co/docs/v2#pokemon
             var nextPageUrl = defaultUrl; 
+            const listStartDefault = 1;
+            var listStart = listStartDefault;
+            
 
             function loadDoc() {
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload = function() {
                     const data = this.responseText;
                     const response = JSON.parse(data); 
-                    // console.log(response);
                     const pokemonid = response.results.map(item=>`<li>${item.name.charAt(0).toUpperCase() + item.name.slice(1)}</li>`); // Allikas: https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
                     nextPageUrl = response.next; 
+
                     if (nextPageUrl === null) {
                         nextPageUrl = defaultUrl;
+                        listStart = listStartDefault;
+                        document.getElementById("reqBtn").innerHTML = "Request Pokémon";
                     }
-                    let dataHtml = "<ul>"
+                    let dataHtml = `<ol start="${listStart}">` // i want to figure out 'start=""' and maybe make this nicer  
+                        // Allikas: https://www.freecodecamp.org/news/html-list-how-to-use-bullet-points-ordered-and-unordered-lists/
                     for (const pokemon of pokemonid) {
                         dataHtml += pokemon;
                     }
-                    dataHtml += "</ul>";
+                    if (nextPageUrl !== null) {
+                    dataHtml += `<li style="list-style: none;"><b>(There's more)</b></li>`;
+                    document.getElementById("reqBtn").innerHTML = "Request More Pokémon"; 
+                    // listStart = listStart + 20;
+                    listStart = Object.keys(response.results.map(item=>item.name)).length + listStart; //Allikas: https://stackoverflow.com/questions/6756104/get-size-of-json-object
+                    }
+                    dataHtml += "</ol>";
+                    
                     document.getElementById("demo").innerHTML = dataHtml;  
-                    document.getElementById("reqBtn").innerHTML = "Request More Pokémon";  
                 };
                 xhttp.open("GET", nextPageUrl);
                 xhttp.send();
             }
         </script>
+
+        <footer style="position: fixed; left: 0; bottom: 0; background-color: black; color: white; text-align: center; width: 100%;">
+            <a href="https://markomaripuu23.thkit.ee/" target="_blank" style="font-size: 150%; color: white; text-decoration: underline; background-color: black;">Index</a>
+        </footer>
     </body>
 </html>
