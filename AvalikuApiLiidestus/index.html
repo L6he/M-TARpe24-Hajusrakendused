@@ -7,11 +7,11 @@
     </head>
 
     <body>
-        <button type="button" onclick="loadDoc()">Request Pokémon</button>
+        <button type="button" id="reqBtn" onclick="loadDoc()">Request Pokémon</button>
         <p id="demo"></p>
 
         <script defer>
-            const defaultUrl = "https://pokeapi.co/api/v2/evolution-chain/1/";
+            const defaultUrl = "https://pokeapi.co/api/v2/pokemon/"; // Allikas: https://pokeapi.co/docs/v2#pokemon
             var nextPageUrl = defaultUrl; 
 
             function loadDoc() {
@@ -19,19 +19,20 @@
                 xhttp.onload = function() {
                     const data = this.responseText;
                     const response = JSON.parse(data); 
-                    const facts = response.data.map(item=>`<li>${item.fact}</li>`); 
-                    nextPageUrl = response.next_page_url; 
+                    // console.log(response);
+                    const pokemonid = response.results.map(item=>`<li>${item.name.charAt(0).toUpperCase() + item.name.slice(1)}</li>`); // Allikas: https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+                    nextPageUrl = response.next; 
                     if (nextPageUrl === null) {
                         nextPageUrl = defaultUrl;
                     }
-                    let dataHtml = "<ol>"
-                    for (const fact of facts) {
-                        dataHtml += fact;
+                    let dataHtml = "<ul>"
+                    for (const pokemon of pokemonid) {
+                        dataHtml += pokemon;
                     }
-                    dataHtml += "</ol>";
+                    dataHtml += "</ul>";
                     document.getElementById("demo").innerHTML = dataHtml;  
+                    document.getElementById("reqBtn").innerHTML = "Request More Pokémon";  
                 };
-                //xhttp.open("GET", "https://baconipsum.com/api/?type=meat-and-filler");
                 xhttp.open("GET", nextPageUrl);
                 xhttp.send();
             }
