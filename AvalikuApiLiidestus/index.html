@@ -18,7 +18,7 @@
             var listStart = listStartDefault;
             
 
-            function loadDoc() {
+            function loadDoc() { //Võib-olla teen nii, et nuppu ei saaks liiga kiiresti klikkida: https://stackoverflow.com/questions/2924330/how-can-i-rate-limit-how-fast-a-javascript-function-allows-itself-to-be-called
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload = function() {
                     const data = this.responseText;
@@ -52,7 +52,8 @@
         </script>
 
         <footer style="position: fixed; left: 0; bottom: 0; background-color: black; color: white; text-align: center; width: 100%;">
-            <a href="https://markomaripuu23.thkit.ee/" target="_blank" style="font-size: 150%; color: white; text-decoration: underline; background-color: black;">Index</a>
-        </footer>
+            <a href="javascript:history.back()" style="font-size: 150%; color: white; text-decoration: underline; background-color: black;">Go back</a>
+         </footer> <!-- Allikas: https://www.w3schools.com/howto/howto_css_fixed_footer.asp -->
+         <!-- Allikas: https://stackoverflow.com/questions/8814472/how-to-make-an-html-back-link -->
     </body>
 </html>
